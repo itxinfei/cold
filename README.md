@@ -41,6 +41,8 @@
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1010/103814_dbd2081e_800553.png "屏幕截图.png")
 
 #### 微服务拆分
+
+```
 cold
 ├── cold-user # 用户服务
 ├── cold-admin # 业务管理、系统管理服务
@@ -53,3 +55,4 @@ cold
 └── cold-jobs # 分布式任务调度（硬件模拟）
 └── cold-netty-server # 设备报文接收服务
 cold-ui         # 前台页面
+```
