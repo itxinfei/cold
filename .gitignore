@@ -1,0 +1,14 @@
+/.idea
+/cold-gateway/target
+/cold-eureka/target
+/cold-admin/target
+/cold-monitor/target
+/cold-jobs/target
+/cold-common/target
+/cold-flink/target
+/cold-druid/target
+/cold-netty-server/target
+/logs/
+/cold-admin/logs
+/cold-eureka/logs
+/cold-gateway/logs
