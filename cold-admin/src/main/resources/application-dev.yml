@@ -2,8 +2,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka.itheima.com:8001/eureka
-
-
 spring:
   redis:
     open: true  # 是否开启redis缓存  true开启   false关闭
@@ -22,8 +20,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://172.168.20.221:3306/cold-admin?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/cold-admin
+      # ?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true
       username: root
       password: root
 

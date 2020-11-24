@@ -49,3 +49,5 @@ mybatis-plus:
     cache-enabled: false
     call-setters-on-nulls: true
     jdbc-type-for-null: 'null'
+
+

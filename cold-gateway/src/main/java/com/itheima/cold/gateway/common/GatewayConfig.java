@@ -5,9 +5,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class GatewayConfig {
-
     @Bean
-    public TokenFilter tokenFilter(){
+    public TokenFilter tokenFilter() {
         return new TokenFilter();
     }
 }

@@ -8,6 +8,9 @@ import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.util.pattern.PathPatternParser;
 
+/**
+ * CROS过滤器解决跨域
+ */
 @Configuration
 public class CorsConfig {
     @Bean
@@ -19,7 +22,6 @@ public class CorsConfig {
         config.setAllowCredentials(true);   //允许发送cookie的内容
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
         source.registerCorsConfiguration("/**", config);
-
         return new CorsWebFilter(source);
     }
 }
