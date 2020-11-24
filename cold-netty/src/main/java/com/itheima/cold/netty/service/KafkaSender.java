@@ -19,5 +19,4 @@ public class KafkaSender {
         }
         return  true;
     }
-
 }
