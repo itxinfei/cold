@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class DruidHelper {
 
-	private String url = "jdbc:avatica:remote:url=http://172.17.0.143:8888/druid/v2/sql/avatica/";
+	private String url = "jdbc:avatica:remote:url=http://localhost:8888/druid/v2/sql/avatica/";
 	private Properties conf = new Properties();
 	private Connection connection;
 

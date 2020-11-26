@@ -12,16 +12,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * 监控设置
+ */
 @Service("monitorService")
 public class MonitorServiceImpl extends ServiceImpl<MonitorDao, MonitorEntity> implements MonitorService {
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        int current = params.get("page")== null? 1 : Integer.valueOf(params.get("page").toString());
-        int size = params.get("pagesize") == null? 10 : Integer.valueOf(params.get("pagesize").toString());
+        int current = params.get("page") == null ? 1 : Integer.valueOf(params.get("page").toString());
+        int size = params.get("pagesize") == null ? 10 : Integer.valueOf(params.get("pagesize").toString());
 
         Page<MonitorEntity> page = new Page<>(current, size);
 
-        String username = params.get("username")==null ? "": params.get("username").toString();
+        String username = params.get("username") == null ? "" : params.get("username").toString();
         QueryWrapper<MonitorEntity> wrapper = new QueryWrapper<>();
         wrapper.lambda().like(MonitorEntity::getUsername, username);
 

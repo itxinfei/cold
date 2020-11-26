@@ -24,36 +24,35 @@ public class DeviceClientFactory {
 
     private static final DeviceClientFactory client = new DeviceClientFactory();
 
-    public static DeviceClientFactory getInstance(){
+    public static DeviceClientFactory getInstance() {
         return client;
     }
 
     /**
      * 向Netty服务端发送信息
+     *
      * @param meterCode
      */
-    public void sendDeviceMessage(String meterCode){
-        try{
+    public void sendDeviceMessage(String meterCode) {
+        try {
             String msg = getRandomMsg(meterCode);
 
             logger.info(msg);
 
             this.connect(msg);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
     }
-
-
 
     /**
      * 模拟硬件:
      * 1.连接平台(不同类型硬件对应不同的端口);
      * 2.向平台发送报文(ClientDeviceHandler);
+     *
      * @throws Exception
      */
-    private void connect(final String msg) throws Exception{
+    private void connect(final String msg) throws Exception {
         // 设置netty服务器的ip、端口
         String host = YmlUtil.getValue("netty.host").toString();
         int port = Integer.parseInt(YmlUtil.getValue("netty.port").toString());
@@ -91,14 +90,15 @@ public class DeviceClientFactory {
         } catch (InterruptedException e) {
             logger.error(e.getMessage());
             e.printStackTrace();
-        }finally{
+        } finally {
             group.shutdownGracefully(); //释放线程池资源
         }
     }
+
     /**
      * 随机报文
      */
-    private String getRandomMsg(String meterCode){
+    private String getRandomMsg(String meterCode) {
         MessageEntity me = new MessageEntity();
         me.setMetercode(meterCode);
 
@@ -117,20 +117,21 @@ public class DeviceClientFactory {
         me.setState(state);
 
         //设置当前时间
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyyMMddHHmmss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         Date date = new Date(System.currentTimeMillis());
         me.setCurtime(formatter.format(date));
 
-        return  me.deviceMessage();
+        return me.deviceMessage();
     }
 
     /**
      * 获得两数之间的随机数字
+     *
      * @param min
      * @param max
      * @return
      */
-    private int getRandom(int min, int max){
+    private int getRandom(int min, int max) {
         Random random = new Random();
         int i = random.nextInt(max) % (max - min + 1) + min;
         return i;
@@ -139,6 +140,7 @@ public class DeviceClientFactory {
 
     /**
      * 测试
+     *
      * @param args
      */
     public static void main(String[] args) {

@@ -7,16 +7,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaSender {
     @Autowired
-    private KafkaTemplate<String,String> kafkaTemplate;
+    private KafkaTemplate<String, String> kafkaTemplate;
 
-    public boolean send(String topic,String message){
+    public boolean send(String topic, String message) {
         try {
             kafkaTemplate.send(topic, message);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-        return  true;
+        return true;
     }
 }

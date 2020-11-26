@@ -8,10 +8,8 @@ import java.util.Map;
 
 /**
  * 监控设置
- *
  */
 public interface MonitorService extends IService<MonitorEntity> {
-
     PageUtils queryPage(Map<String, Object> params);
 }
 

@@ -8,10 +8,8 @@ import java.util.Map;
 
 /**
  * 企业信息表
- *
  */
 public interface CompanyService extends IService<CompanyEntity> {
-
     PageUtils queryPage(Map<String, Object> params);
 }
 

@@ -14,32 +14,29 @@ import java.util.Map;
 
 /**
  * 定时任务日志
- *
- *
  */
 @RestController
 @RequestMapping("/system/schedule/log")
 public class ScheduleJobLogController {
-	@Autowired
-	private ScheduleJobLogService scheduleJobLogService;
-	
-	/**
-	 * 定时任务日志列表
-	 */
-	@RequestMapping("/list")
-	public Result list(@RequestParam Map<String, Object> params){
-		PageUtils page = scheduleJobLogService.queryPage(params);
-		
-		return Result.ok().put("page", page);
-	}
-	
-	/**
-	 * 定时任务日志信息
-	 */
-	@RequestMapping("/info/{logId}")
-	public Result info(@PathVariable("logId") Long logId){
-		ScheduleJobLogEntity log = scheduleJobLogService.getById(logId);
-		
-		return Result.ok().put("log", log);
-	}
+
+    @Autowired
+    private ScheduleJobLogService scheduleJobLogService;
+
+    /**
+     * 定时任务日志列表
+     */
+    @RequestMapping("/list")
+    public Result list(@RequestParam Map<String, Object> params) {
+        PageUtils page = scheduleJobLogService.queryPage(params);
+        return Result.ok().put("page", page);
+    }
+
+    /**
+     * 定时任务日志信息
+     */
+    @RequestMapping("/info/{logId}")
+    public Result info(@PathVariable("logId") Long logId) {
+        ScheduleJobLogEntity log = scheduleJobLogService.getById(logId);
+        return Result.ok().put("log", log);
+    }
 }

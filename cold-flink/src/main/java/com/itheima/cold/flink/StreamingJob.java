@@ -13,44 +13,37 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
 
 import java.util.Properties;
 
+/**
+ * 实时数据处理
+ */
 public class StreamingJob {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         // kafka队列名称
         String kafka_topic = "device_msg_topic";
-
         // 获取环境信息
         final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        
         //设置容错
         env.enableCheckpointing(5000);
-
         //设置检查点模式
         env.getCheckpointConfig().setCheckpointingMode(CheckpointConfig.DEFAULT_MODE);
-
         //设置重启策略
         env.getConfig().setRestartStrategy(RestartStrategies.fixedDelayRestart(4, 1000));
-
         //kafka队列属性
         Properties properties = new Properties();
-        properties.setProperty("bootstrap.servers", "172.17.0.143:9092");
-		properties.setProperty("group.id", "coldflink");
+        properties.setProperty("bootstrap.servers", "172.168.20.221:9092");
+        properties.setProperty("group.id", "coldflink");
         properties.setProperty("auto.offset.reset", "earliest");
-
         //kafka队列consumer，接收netty发送过来的数据
         FlinkKafkaConsumer<String> consumer = new FlinkKafkaConsumer<String>(kafka_topic, new SimpleStringSchema(), properties);
         consumer.setStartFromLatest();
-
         //设置实时数据源：kafka队列
         DataStream<MessageEntity> stream = env.addSource(consumer)
                 .setParallelism(1)
-                .map(string  -> JSON.parseObject(string, MessageEntity.class));
-
+                .map(string -> JSON.parseObject(string, MessageEntity.class));
         //从redis中获取设备信息，合并至消息中
         DataStream<MessageEntity> outStream = stream.map(new MessageAggregate());
-
         //存储设备指标消息
         outStream.addSink(new SinkToMySQL());
-
         // 将消息发送到kafka队列
         // Druid监听此队列，将消息保存到druid中
         FlinkKafkaProducer<String> myProducer = new FlinkKafkaProducer<String>("all_device_message", new SimpleStringSchema(), properties);
@@ -61,10 +54,6 @@ public class StreamingJob {
             }
         }).addSink(myProducer);
         myProducer.close();
-
         env.execute("冷链设备实时监控任务");
     }
-
-
-
 }

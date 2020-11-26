@@ -27,18 +27,17 @@ public class MonitorController {
      * 列表
      */
     @RequestMapping("/list")
-    public Result list(@RequestParam Map<String, Object> params){
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = monitorService.queryPage(params);
 
         return Result.ok(page.getPageMap());
     }
 
-
     /**
      * 保存
      */
     @RequestMapping("/save")
-    public Result save(@RequestBody MonitorEntity monitor){
+    public Result save(@RequestBody MonitorEntity monitor) {
         String uuid = UUID.randomUUID().toString();
         monitor.setId(uuid);
         monitorService.save(monitor);
@@ -50,8 +49,8 @@ public class MonitorController {
      * 修改
      */
     @RequestMapping("/update")
-    public Result update(@RequestBody MonitorEntity monitor){
-		monitorService.updateById(monitor);
+    public Result update(@RequestBody MonitorEntity monitor) {
+        monitorService.updateById(monitor);
 
         return Result.ok();
     }
@@ -60,9 +59,8 @@ public class MonitorController {
      * 删除
      */
     @RequestMapping("/delete")
-    public Result delete(String id){
+    public Result delete(String id) {
         monitorService.removeById(id);
-
         return Result.ok();
     }
 

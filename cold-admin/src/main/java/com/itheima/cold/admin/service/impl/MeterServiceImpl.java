@@ -12,28 +12,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-
+/**
+ * 仪表管理
+ */
 @Service("meterService")
 public class MeterServiceImpl extends ServiceImpl<MeterDao, MeterEntity> implements MeterService {
-
+    /**
+     * @param params
+     * @return
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        int current = params.get("page")== null? 1 : Integer.valueOf(params.get("page").toString());
-        int size = params.get("pagesize") == null? 10 : Integer.valueOf(params.get("pagesize").toString());
-
+        int current = params.get("page") == null ? 1 : Integer.valueOf(params.get("page").toString());
+        int size = params.get("pagesize") == null ? 10 : Integer.valueOf(params.get("pagesize").toString());
         Page<MeterEntity> page = new Page<>(current, size);
-        String housename = params.get("housename")==null ? "": params.get("housename").toString();
-
+        String housename = params.get("housename") == null ? "" : params.get("housename").toString();
         QueryWrapper<MeterEntity> wrapper = new QueryWrapper<>();
         wrapper.lambda()
                 .like(MeterEntity::getHousename, housename)
                 .orderByAsc(MeterEntity::getMetername);
-
         IPage<MeterEntity> result = this.page(page, wrapper);
-
         return new PageUtils(result);
     }
-
-
-
 }

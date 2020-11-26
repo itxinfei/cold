@@ -1,7 +1,13 @@
 ## 冷链 - 后台管理
 
-## 技术栈
+## 编译vue
+npm install
+## 本地运行web应用
+npm run serve
+## 生成dist目录
+npm run build
 
+## 技术栈
 - vue + elementUI + typeScript
 
 ## 相关信息

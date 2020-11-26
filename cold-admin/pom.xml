@@ -5,13 +5,14 @@
     <parent>
         <groupId>com.itheima</groupId>
         <artifactId>cold-parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
+
     <groupId>com.itheima</groupId>
     <artifactId>cold-admin</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <name>cold-admin</name>
-    <description>cold monitor admin</description>
+    <description>cold-admin</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -20,11 +21,13 @@
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
     </properties>
 
+    <!--后台依赖坐标-->
     <dependencies>
+        <!--公共组件-->
         <dependency>
             <groupId>com.itheima</groupId>
             <artifactId>cold-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -56,8 +59,8 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.32</version>
-            <!--<scope>runtime</scope>-->
+            <!-- <version>5.1.32</version>-->
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

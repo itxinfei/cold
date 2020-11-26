@@ -18,24 +18,22 @@ public class MessageServiceImpl extends ServiceImpl<MessageDao, MessageEntity> i
     public IPage queryMessageRealtime(Map<String, Object> parames) {
         //组装查询条件
         QueryWrapper queryWrapper = getMessageCondition(parames);
-
         //查询
         int page = Integer.valueOf(parames.get("page").toString());
         int size = Integer.valueOf(parames.get("pagesize").toString());
         return this.page(new Page<MessageEntity>(page, size),
-               queryWrapper );
+                queryWrapper);
     }
 
-    private QueryWrapper getMessageCondition(Map<String, Object> params){
+    private QueryWrapper getMessageCondition(Map<String, Object> params) {
         QueryWrapper<MessageEntity> queryWrapper = new QueryWrapper<>();
 
-        String companyid = params.get("companyId") == null? null: params.get("companyId").toString().trim();
-        if(companyid != null){
+        String companyid = params.get("companyId") == null ? null : params.get("companyId").toString().trim();
+        if (companyid != null) {
             queryWrapper.eq("companyId", companyid);
         }
         //添加其他参数
         //...
-
         return queryWrapper;
     }
 }

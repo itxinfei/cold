@@ -2,6 +2,14 @@
 
 ### 演示地址：
 http://mp-bingyan-java.itheima.net/cold/index.html
+### docker安装软件
+- docker run --name superset -d -p 7088:8088 -v /opt/docker/superset:/home/superset amancevice/superset
+# 初始化superset数据库
+- docker exec -it superset superset db upgrade
+# 初始化superset
+- docker exec -it superset superset init
+# 设置用户名和密码， 密码设置为： admin123
+- docker exec -it superset fabmanager create-admin --app superset
 
 #### 项目介绍
 冰眼冷链物流设备监控系统，是一款应用于食品生鲜、医药冷链的仓储、运输环节中针对温度、湿度、电量等进行监控、预警和统计分析的系统。实现了冷链监控环节的数据采集自动化、监控指标配置化、预警通知自动化、统计分析可视化，从而提升了生鲜、药品仓储、运输的安全管控水平，增强了企业对业务各环节的管理和控制。
@@ -59,6 +67,17 @@ cold
 └── cold-netty-server # 设备报文接收服务
 cold-ui         # 前台页面
 ```
+
+- cold-eureka 8001 服务注册中心
+- cold-gateway 8080 API网关，前端统一
+- cold-user 8185 用户服务 
+- cold-admin 8181 管理服务
+- cold-druid 8182 Druid查询服务 
+- cold-monitor 8183 实时查询服务
+- cold-jobs 8184 定时任务服务
+- cold-netty-server 10010 netty服务器
+- cold-ui 8000 web服务
+
 ### 交流方式：
 
 QQ技术交流群：863662849<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=9yLlyD1dRBL97xmBKw43zRt0-6xg8ohb&jump_from=webapi">

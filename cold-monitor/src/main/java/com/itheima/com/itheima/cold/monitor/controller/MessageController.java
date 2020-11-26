@@ -16,6 +16,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("device/monitor")
 public class MessageController {
+
     @Autowired
     private MessageService messageService;
 
@@ -23,18 +24,18 @@ public class MessageController {
      * 仓库监控列表
      */
     @RequestMapping("/list")
-    public Result deviceList(@RequestParam Map<String, Object> params){
+    public Result deviceList(@RequestParam Map<String, Object> params) {
         List<MessageEntity> list = messageService.queryMessageRealtime(params).getRecords();
         Map<String, Object> map = new HashMap<>();
         map.put("items", list);
-        return  Result.ok(map);
+        return Result.ok(map);
     }
 
     /**
      * 实时监控数据
      */
     @RequestMapping("/realtime")
-    public Result realtime(@RequestParam Map<String, Object> params){
+    public Result realtime(@RequestParam Map<String, Object> params) {
         IPage<MessageEntity> list = messageService.queryMessageRealtime(params);
         Map<String, Object> map = new HashMap<>();
         map.put("total", list.getTotal());

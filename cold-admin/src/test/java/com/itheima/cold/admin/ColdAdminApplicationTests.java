@@ -11,6 +11,8 @@ public class ColdAdminApplicationTests {
 
 	@Test
 	public void contextLoads() {
-	}
 
+
+
+	}
 }

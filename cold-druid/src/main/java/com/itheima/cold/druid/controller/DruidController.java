@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("apache-druid/query")
 public class DruidController {
+
 	@Autowired
 	private DruidService druidService;
 
@@ -22,6 +23,7 @@ public class DruidController {
 
 	/**
 	 * 查询Druid中数据列表
+	 *
 	 * @param params
 	 * @return
 	 */
@@ -32,11 +34,12 @@ public class DruidController {
 
 	/**
 	 * 查询Druid中温度湿度数据（设备最近10条数据）
+	 *
 	 * @param params
 	 * @return
 	 */
 	@RequestMapping("/temhum")
-	public Result temhumLine(@RequestParam Map<String, Object> params){
+	public Result temhumLine(@RequestParam Map<String, Object> params) {
 		return druidService.queryDruidTumHum(params);
 	}
 }

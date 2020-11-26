@@ -13,6 +13,7 @@ import reactor.core.publisher.Mono;
  * API鉴权
  */
 public class TokenFilter implements GlobalFilter, Ordered {
+
     Logger logger = LoggerFactory.getLogger(TokenFilter.class);
 
     @Override

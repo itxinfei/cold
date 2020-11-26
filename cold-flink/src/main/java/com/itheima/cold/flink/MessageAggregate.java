@@ -8,66 +8,57 @@ import org.apache.flink.api.common.functions.MapFunction;
 import redis.clients.jedis.Jedis;
 import redis.clients.util.SafeEncoder;
 
+/**
+ *
+ */
 public class MessageAggregate implements MapFunction<MessageEntity, MessageEntity> {
-    final JedisUtil jedisUtil= JedisUtil.getInstance();
+
+    final JedisUtil jedisUtil = JedisUtil.getInstance();
 
     @Override
     public MessageEntity map(MessageEntity value) throws Exception {
         Jedis jedis = jedisUtil.getJedis();
-        try{
+        try {
             byte[] meterBy = jedis.get(SafeEncoder.encode(value.getMetercode()));
-
             MeterEntity meter = (MeterEntity) SerializeUtil.unserialize(meterBy);
-
             value.setMeterid(meter.getId());
             value.setMetername(meter.getMetername());
             value.setHostcode(meter.getHostcode());
             value.setHostid(meter.getHostid());
             value.setHostname(meter.getHostname());
-
             value.setHouseid(meter.getHouseid());
             value.setHousecode(meter.getHousecode());
             value.setHousename(meter.getHousename());
             value.setCompanyid(meter.getCompanyid());
             value.setCompanyname(meter.getCompanyname());
-//                value.setState(Integer.valueOf(meter.getMeterstatus()));
-
+            //value.setState(Integer.valueOf(meter.getMeterstatus()));
             value.setMaxtem(Integer.valueOf(meter.getMaxtem()));
             value.setMintem(Integer.valueOf(meter.getMintem()));
             value.setMaxhum(Integer.valueOf(meter.getMaxhum()));
             value.setMinhum(Integer.valueOf(meter.getMinhum()));
 
-            if(value.getTem() > value.getMaxhum()){
+            if (value.getTem() > value.getMaxhum()) {
                 value.setTemalert(1);   //高温
-            }
-            else if(value.getTem() < value.getMintem()){
+            } else if (value.getTem() < value.getMintem()) {
                 value.setTemalert(-1);  //低温
-            }
-            else{
+            } else {
                 value.setTemalert(0);   //正常
             }
-
-            if(value.getHum() > value.getMaxhum()){
+            if (value.getHum() > value.getMaxhum()) {
                 value.setHumalert(1);
-            }
-            else if(value.getHum() < value.getMinhum()){
+            } else if (value.getHum() < value.getMinhum()) {
                 value.setHumalert(-1);
-            }
-            else{
+            } else {
                 value.setHumalert(0);
             }
-
             return value;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             jedisUtil.returnBrokenResource(jedis);
 
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             jedisUtil.returnJedis(jedis);
         }
-
         return value;
     }
 }

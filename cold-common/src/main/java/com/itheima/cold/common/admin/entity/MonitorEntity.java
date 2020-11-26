@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Data
 @TableName("cz_monitor")
 public class MonitorEntity implements Serializable {
+    
     private static final long serialVersionUID = 1L;
 
     /**

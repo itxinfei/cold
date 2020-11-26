@@ -8,13 +8,11 @@ server:
   servlet:
     context-path: /cold
 netty:
-  host: cold-admin-8090.itheima.cn
-  port: 10010
-
+  host: localhost
+  port: 8186
 spring:
   application:
     name: cold-jobs
-
   # 环境 dev|test|prod
   profiles:
     active: dev
@@ -27,8 +25,6 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
       enabled: true
-
-
 #mybatis
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*.xml

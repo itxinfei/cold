@@ -7,11 +7,9 @@ server:
   connection-timeout: 10000ms
   servlet:
     context-path: /cold
-
 spring:
   application:
-      name: cold-druid
-
+    name: cold-druid
   # 环境 dev|test|prod
   profiles:
     active: dev

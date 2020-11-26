@@ -1,7 +1,7 @@
 package com.itheima.cold.admin.controller;
 
-import com.itheima.cold.common.admin.entity.OperationLog;
 import com.itheima.cold.common.utils.Result;
+import com.itheima.cold.common.admin.entity.OperationLog;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,43 +11,53 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ */
 @RestController
 @RequestMapping("admin/api")
 public class AdminController {
 
+    /**
+     * 假数据
+     *
+     * @param params
+     * @return
+     */
     @RequestMapping("/total")
-    public Result getTotal(@RequestParam Map<String, Object> params){
+    public Result getTotal(@RequestParam Map<String, Object> params) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("equipmentTotal", "16");
         map.put("organizationTotal", "5");
-        map.put("warningTotal","32342");
-        map.put("meterTotal","16");
+        map.put("warningTotal", "32342");
+        map.put("meterTotal", "16");
         map.put("accuracy", "57");
         map.put("unaccomplished", "32123");
         map.put("finishNumber", "2312");
         return Result.ok(map);
     }
 
-
+    /**
+     * 假数据
+     *
+     * @param params
+     * @return
+     */
     @RequestMapping("/operationlog")
-    public Result getOperationLog(@RequestParam Map<String, Object> params){
-
+    public Result getOperationLog(@RequestParam Map<String, Object> params) {
         List<OperationLog> list = new ArrayList<OperationLog>();
-
-        for(int i=0; i < 5;i ++){
+        for (int i = 0; i < 5; i++) {
             OperationLog log = new OperationLog();
             log.setName("admin");
             log.setMsg("开风机");
-            log.setStorehouse("昌平一号库房");
+            log.setStorehouse("武汉一号库房");
             log.setOperationTime("2019-08-20 10:21:00");
             list.add(log);
         }
-
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("page", "1");
         map.put("total", "9");
-        map.put("items",list);
+        map.put("items", list);
         return Result.ok(map);
-
     }
 }

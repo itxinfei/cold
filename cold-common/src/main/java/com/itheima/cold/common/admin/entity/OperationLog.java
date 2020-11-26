@@ -15,5 +15,4 @@ public class OperationLog {
     private String storehouse;
 
     private String msg;
-
 }

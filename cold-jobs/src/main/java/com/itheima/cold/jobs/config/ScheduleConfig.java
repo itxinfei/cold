@@ -9,8 +9,6 @@ import java.util.Properties;
 
 /**
  * 定时任务配置
- *
- *
  */
 @Configuration
 public class ScheduleConfig {
@@ -19,7 +17,6 @@ public class ScheduleConfig {
     public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         factory.setDataSource(dataSource);
-
         //quartz参数
         Properties prop = new Properties();
         prop.put("org.quartz.scheduler.instanceName", "ItcastScheduler");
@@ -34,13 +31,10 @@ public class ScheduleConfig {
         prop.put("org.quartz.jobStore.isClustered", "true");
         prop.put("org.quartz.jobStore.clusterCheckinInterval", "15000");
         prop.put("org.quartz.jobStore.maxMisfiresToHandleAtATime", "1");
-
         prop.put("org.quartz.jobStore.misfireThreshold", "12000");
         prop.put("org.quartz.jobStore.tablePrefix", "QRTZ_");
         prop.put("org.quartz.jobStore.selectWithLockSQL", "SELECT * FROM {0}LOCKS UPDLOCK WHERE LOCK_NAME = ?");
-
         factory.setQuartzProperties(prop);
-
         factory.setSchedulerName("ItcastScheduler");
         //延时启动
         factory.setStartupDelay(30);
@@ -49,7 +43,6 @@ public class ScheduleConfig {
         factory.setOverwriteExistingJobs(true);
         //设置自动启动，默认为true
         factory.setAutoStartup(true);
-
         return factory;
     }
 }

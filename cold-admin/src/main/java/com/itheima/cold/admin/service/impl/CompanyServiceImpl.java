@@ -12,25 +12,28 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * 企业信息表
+ */
 @Service("companyService")
 public class CompanyServiceImpl extends ServiceImpl<CompanyDao, CompanyEntity> implements CompanyService {
 
+    /**
+     * @param params
+     * @return
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         //分页参数
-        int current = params.get("page")== null? 1 : Integer.valueOf(params.get("page").toString());
-        int size = params.get("pagesize") == null? 10 : Integer.valueOf(params.get("pagesize").toString());
-
+        int current = params.get("page") == null ? 1 : Integer.valueOf(params.get("page").toString());
+        int size = params.get("pagesize") == null ? 10 : Integer.valueOf(params.get("pagesize").toString());
         Page<CompanyEntity> page = new Page<>(current, size);
-
         //查询条件
-        String company = params.get("company")==null ? "": params.get("company").toString();
+        String company = params.get("company") == null ? "" : params.get("company").toString();
         QueryWrapper<CompanyEntity> wrapper = new QueryWrapper<>();
         wrapper.lambda().like(CompanyEntity::getCompany, company);
-
         //执行查询
         IPage<CompanyEntity> result = this.page(page, wrapper);
-
         //返回结构化数据
         return new PageUtils(result);
     }
