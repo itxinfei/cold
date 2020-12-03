@@ -1,15 +1,12 @@
 ### 冰眼冷链
 
+### 交流方式：
+
+QQ技术交流群：863662849<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=9yLlyD1dRBL97xmBKw43zRt0-6xg8ohb&jump_from=webapi">
+<img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="Java项目交流+求职面试" title="Java项目交流+求职面试"></a><a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=f0hLSE9OTkdHTT8ODlEcEBI" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png"/></a>
+
 ### 演示地址：
 http://mp-bingyan-java.itheima.net/cold/index.html
-### docker安装软件
-- docker run --name superset -d -p 7088:8088 -v /opt/docker/superset:/home/superset amancevice/superset
-# 初始化superset数据库
-- docker exec -it superset superset db upgrade
-# 初始化superset
-- docker exec -it superset superset init
-# 设置用户名和密码， 密码设置为： admin123
-- docker exec -it superset fabmanager create-admin --app superset
 
 #### 项目介绍
 冰眼冷链物流设备监控系统，是一款应用于食品生鲜、医药冷链的仓储、运输环节中针对温度、湿度、电量等进行监控、预警和统计分析的系统。实现了冷链监控环节的数据采集自动化、监控指标配置化、预警通知自动化、统计分析可视化，从而提升了生鲜、药品仓储、运输的安全管控水平，增强了企业对业务各环节的管理和控制。
@@ -78,16 +75,11 @@ cold-ui         # 前台页面
 - cold-netty-server 10010 netty服务器
 - cold-ui 8000 web服务
 
-### 交流方式：
-
-QQ技术交流群：863662849<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=9yLlyD1dRBL97xmBKw43zRt0-6xg8ohb&jump_from=webapi">
-<img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="Java项目交流+求职面试" title="Java项目交流+求职面试"></a><a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=f0hLSE9OTkdHTT8ODlEcEBI" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png"/></a>
-
-![QQ技术交流群：863662849](https://images.gitee.com/uploads/images/2020/1022/145319_459f7be2_800553.png "QQ技术交流群.png")
-
-### 整理不易，欢迎各位白嫖star
-如果可以请各位大佬打赏一下，请我喝杯咖啡，资助一下云服务器，部署一个演示站点，感谢！！！
-
-![输入图片说明](https://images.gitee.com/uploads/images/2020/1022/152637_f80669f5_800553.jpeg "支付宝收钱码.jpg")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2020/1022/152705_964cb145_800553.png "微信收钱码.png")
+docker安装软件
+- docker run --name superset -d -p 7088:8088 -v /opt/docker/superset:/home/superset amancevice/superset
+初始化superset数据库
+- docker exec -it superset superset db upgrade
+初始化superset
+- docker exec -it superset superset init
+设置用户名和密码， 密码设置为： admin123
+- docker exec -it superset fabmanager create-admin --app superset
