@@ -12,6 +12,8 @@ import java.util.UUID;
 
 /**
  * 企业信息表
+ *
+ * @author Administrator
  */
 @RestController
 @RequestMapping("admin/company")
