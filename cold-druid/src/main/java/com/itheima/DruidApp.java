@@ -6,12 +6,12 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * @author Administrator
+ *
  */
 @SpringBootApplication
 @EnableDiscoveryClient
 public class DruidApp {
-	public static void main(String[] args) {
-		SpringApplication.run(DruidApp.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DruidApp.class, args);
+    }
 }

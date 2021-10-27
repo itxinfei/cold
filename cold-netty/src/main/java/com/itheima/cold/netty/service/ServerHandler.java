@@ -17,6 +17,7 @@ import java.util.Date;
 /**
  * 硬件报文处理,数据报文:
  * SHT|HE00120931|29|76|1|null|null|20190802125717|SH5lb1.2.1R
+ * @author Administrator
  */
 public class ServerHandler extends ChannelInboundHandlerAdapter {
     private static final Logger logger = LoggerFactory.getLogger(ServerHandler.class);

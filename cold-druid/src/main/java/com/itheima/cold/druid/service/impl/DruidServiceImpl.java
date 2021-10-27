@@ -14,6 +14,7 @@ import java.util.*;
  */
 @Service("druidService")
 public class DruidServiceImpl implements DruidService {
+    
     @Override
     public Result queryDruidList(Map<String, Object> params) {
         //根据参数组装查询条件
@@ -40,7 +41,7 @@ public class DruidServiceImpl implements DruidService {
             map.put("items", resultList);
 
             return Result.ok(map);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             helper.close(connection, st, rs);
@@ -53,7 +54,7 @@ public class DruidServiceImpl implements DruidService {
     @Override
     public Result queryDruidTumHum(Map<String, Object> params) {
         //查询druid数据列表
-        List<MessageEntity> list = (List<MessageEntity>)queryDruidList(params).get("items");
+        List<MessageEntity> list = (List<MessageEntity>) queryDruidList(params).get("items");
 
         List<String> times = new ArrayList<>();
         List<Integer> tems = new ArrayList<>();
@@ -65,7 +66,7 @@ public class DruidServiceImpl implements DruidService {
 
             String strTime = messageHistoryEntity.getCurtime();
 
-            times.add(strTime.substring(8, 10) + ":" + strTime.substring(10, 12)+ ":" + strTime.substring(12, 14));
+            times.add(strTime.substring(8, 10) + ":" + strTime.substring(10, 12) + ":" + strTime.substring(12, 14));
             tems.add(messageHistoryEntity.getTem());
             hums.add(messageHistoryEntity.getHum());
         }
@@ -84,16 +85,17 @@ public class DruidServiceImpl implements DruidService {
 
     /**
      * 查询条件
+     *
      * @param params
      * @return
      */
-    private String querySQL(Map<String, Object> params){
+    private String querySQL(Map<String, Object> params) {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("SELECT * from all_device_message where 1= 1 ");
 
         //设备编码
-        String  metercode = params.get("metercode").toString().trim();
-        if(!metercode.equals("")){
+        String metercode = params.get("metercode").toString().trim();
+        if (!metercode.equals("")) {
             stringBuffer.append(" and metercode = '");
             stringBuffer.append(metercode);
             stringBuffer.append("' ");
@@ -101,13 +103,13 @@ public class DruidServiceImpl implements DruidService {
 
         //前台传入开始、结束时间
         String startTime = params.get("stTime").toString().trim();
-        if(!startTime.equals("")){
+        if (!startTime.equals("")) {
             stringBuffer.append(" and __time > '");
             stringBuffer.append(startTime);
             stringBuffer.append("' ");
         }
         String endTime = params.get("endTime").toString().trim();
-        if(!endTime.equals("")){
+        if (!endTime.equals("")) {
             stringBuffer.append(" and __time < '");
             stringBuffer.append(endTime);
             stringBuffer.append("' ");
@@ -116,7 +118,7 @@ public class DruidServiceImpl implements DruidService {
         stringBuffer.append(" order by __time desc");
 
         //查询条数
-        String limit = params.get("limit")!=null? params.get("limit").toString().trim():"10";
+        String limit = params.get("limit") != null ? params.get("limit").toString().trim() : "10";
         stringBuffer.append(" limit ");
         stringBuffer.append(limit);
 
@@ -126,11 +128,12 @@ public class DruidServiceImpl implements DruidService {
 
     /**
      * 查询结果转化为对象
+     *
      * @param rs
      * @return
      * @throws Exception
      */
-    private MessageEntity Rs2Entity(ResultSet rs) throws Exception{
+    private MessageEntity Rs2Entity(ResultSet rs) throws Exception {
         MessageEntity messageEntity = new MessageEntity();
 
         messageEntity.setMetercode(rs.getString("metercode"));

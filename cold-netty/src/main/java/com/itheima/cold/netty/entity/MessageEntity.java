@@ -1,14 +1,18 @@
 package com.itheima.cold.netty.entity;
 
 import lombok.Data;
+
 import java.io.Serializable;
 
+/**
+ * @author Administrator
+ */
 @Data
 public class MessageEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     *  设备编码
+     * 设备编码
      */
     private String metercode;
 
@@ -66,7 +70,6 @@ public class MessageEntity implements Serializable {
 
     /**
      * 温度下限
-     *
      */
     private int mintem;
 
